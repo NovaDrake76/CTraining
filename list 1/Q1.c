@@ -1,3 +1,5 @@
+//Soma de dois números pares
+
 #include <stdio.h>
 
 int main(void)

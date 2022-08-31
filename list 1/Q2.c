@@ -1,4 +1,4 @@
-// read 2 values, the coordinates of 2 points in a rectangle: the top left and the bottom right. Then, read the coordinates of a point in the plane. If the point is inside the rectangle, print "Dentro!". If the point is outside the rectangle, print "Fora!".
+//Dentro ou Fora
 
 #include <stdio.h>
 

@@ -1,4 +1,4 @@
-// user input 4 values. Sum these values, and get the letter of the alphabet corresponding to the sum. If the sum is greater than 26, subtract 26 from the sum. If the sum is less than 1, print "Ei! Ninguém colocou nada!". Print the letter.
+//Adedooooooo...nha!
 
 #include <stdio.h>
 
