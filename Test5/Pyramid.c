@@ -11,19 +11,18 @@ int main()
     {
         for (int j = 0; j < n; j++)
         {
-            if (i < n / 2)
+            if (i < n / 2 && (j < n / 2))
             {
-                if (j < n / 2)
+
+                if (i < j)
                 {
-                    if (i < j)
-                    {
-                        matrix[i][j] = i + 1;
-                    }
-                    else
-                    {
-                        matrix[i][j] = j + 1;
-                    }
+                    matrix[i][j] = i + 1;
                 }
+                else
+                {
+                    matrix[i][j] = j + 1;
+                }
+
                 else
                 {
                     if (i < n - j - 1)
