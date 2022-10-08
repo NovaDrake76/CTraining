@@ -9,6 +9,7 @@ int main()
     total = n * m;
     char scan[total];
     char list1[5] = {'~', 'X', '^', '*', '.'};
+    // agua, especies, deserto, vegetação, sem recursos
     int list2[5] = {0, 0, 0, 0, 0};
 
     for (int i = 0; i < total; i++)
@@ -28,25 +29,25 @@ int main()
         }
     }
 
-    if (list2[1] > 0)
-    {
-        printf("Planeta Hostil");
-    }
-    else if ((list2[0] >= total * 0.50) && (list2[3] >= total * 0.20))
-    {
-        printf("Planeta Classe M");
-    }
-    else if (list2[0] > total * 0.85)
+    if (list2[0] + ((10 * total) / 100) > (85 * total) / 100)
     {
         printf("Planeta Aquático");
     }
-    else if (list2[2] > total * 0.60)
+    else if (list2[1] > 0)
+    {
+        printf("Planeta Hostil");
+    }
+    else if (list2[2] > (60 * total) / 100)
     {
         printf("Planeta Desértico");
     }
-    else if (list2[3] > total * 0.65)
+    else if (list2[3] > (65 * total) / 100)
     {
         printf("Planeta Selvagem");
+    }
+    else if ((list2[0] > (50 * total) / 100) && (list2[3] > (20 * total) / 100) && (list2[1] == 0))
+    {
+        printf("Planeta Classe M");
     }
     else
     {
