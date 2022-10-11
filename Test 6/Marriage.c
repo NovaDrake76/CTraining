@@ -13,12 +13,16 @@ int main()
         {
             if (text[(i + j) % strlen(text)] != pattern[j])
             {
+                printf("%c não\n", text[(i + j) % strlen(text)]);
                 break;
             }
         }
         if (j == strlen(pattern))
         {
+            printf(" sim\n");
+
             printf("Achei o padrão no índice %d", i);
+            break;
         }
     }
 }
