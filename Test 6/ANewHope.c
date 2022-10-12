@@ -1,6 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 
+void read_line(char linha[], int tam, FILE *f)
+{
+    fgets(linha, tam, f);
+    while (linha[0] == '\n')
+        fgets(linha, tam, f);
+    if (linha[strlen(linha) - 1] == '\n')
+        linha[strlen(linha) - 1] = '\0';
+}
+
 int main()
 {
     const char S[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '.', ',', '?', ' '};
@@ -8,9 +17,10 @@ int main()
     char key[50];
     scanf("%s", key);
 
-    char text[50];
-    scanf("%s", text);
+    char text[200] = {0};
+    read_line(text, 200, stdin);
 
+    // verifica caractere
     for (int i = 0; i < strlen(text); i++)
     {
         int j;
@@ -52,9 +62,10 @@ int main()
                 break;
             }
         }
-        printf("%c", S[(j + k) % strlen(S)]);
+        text[i] = S[(j + k) % strlen(S)];
     }
-    printf("\n");
+
+    printf("%s", text);
 
     return 0;
 }
