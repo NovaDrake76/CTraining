@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <string.h>
 
-// funcionando agora
-
 int main()
 {
     char text[50], pattern[50];
