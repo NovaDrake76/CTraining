@@ -1,0 +1,86 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+void read_line(char linha[], int tam, FILE* f){
+    fgets(linha, tam, f);
+    while(linha[0] == '\n')
+        fgets(linha, tam, f);
+    if(linha[strlen(linha)-1] == '\n')
+        linha[strlen(linha)-1] = '\0';
+}
+
+typedef struct discente{
+    char *nome;
+    float mc;
+    char turno;
+} Discente;
+
+int verificar_ja_passou(int indexs[], int vagas, int index){
+    for(int i = 0; i < vagas; i++){
+        if(indexs[i] == index){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main()
+{
+    char materia[50];
+    int vagas, qnt_alunos_concorrendo;
+    char turno_turma;
+    
+    char nome[100];
+    float media;
+    char turno_aluno;
+    
+    read_line(materia, 50, stdin);
+    scanf("%d", &vagas);
+    scanf(" %c", &turno_turma);
+    scanf("%d", &qnt_alunos_concorrendo);
+    
+    int indexs[vagas], vagas_ocupadas=0, index=0;
+    float maior_media=0;
+    for(int i = 0; i < vagas; i++){
+        indexs[i] = -1;
+    }
+    char nomes[4][100];
+    Discente *alunos_concorrendo = malloc(qnt_alunos_concorrendo * sizeof(Discente));
+    
+    for(int i = 0; i < qnt_alunos_concorrendo; i++){
+        read_line(nome, 100, stdin);
+  
+        scanf("%f", &media);
+        scanf(" %c", &turno_aluno);
+ 
+        strcpy(nomes[i], nome);
+        alunos_concorrendo[i].nome = nomes[i];
+        alunos_concorrendo[i].mc = media;
+
+        alunos_concorrendo[i].turno = turno_aluno;
+       
+    }
+    for(int i = 0; i < qnt_alunos_concorrendo; i++){
+        
+    }
+    
+    while(vagas_ocupadas < vagas){
+        for(int i = 0; i < qnt_alunos_concorrendo; i++){
+            if(alunos_concorrendo[i].turno == turno_turma){
+                if(alunos_concorrendo[i].mc > maior_media && verificar_ja_passou(indexs, vagas, i)){
+                    maior_media = alunos_concorrendo[i].mc;
+                    index = i;
+                }
+            }
+        }
+        indexs[vagas_ocupadas] = index;
+        vagas_ocupadas++;
+        maior_media = 0;
+    }
+    for(int i = 0; i < vagas; i++){
+        printf("%s\n", alunos_concorrendo[indexs[i]].nome);
+    }
+    
+    free(alunos_concorrendo);
+}
