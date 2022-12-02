@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+  
+char *rep_str(const char *s, const char *old, const char *new1)
+{
+    char *ret;
+    int i, count = 0;
+    int newlen = strlen(new1);
+    int oldlen = strlen(old);
+ 
+    for (i = 0; s[i] != '\0'; i++)    
+    {
+        if (strstr(&s[i], old) == &s[i]) 
+        {
+            count++;
+            i += oldlen - 1;
+        }
+    }
+    ret = (char *)malloc(i + count * (newlen - oldlen));
+    if (ret == NULL)
+        exit(EXIT_FAILURE);
+            i = 0;
+    while (*s)
+    {
+        if (strstr(s, old) == s) 
+        {
+            strcpy(&ret[i], new1);
+            i += newlen;
+            s += oldlen;
+        }
+        else
+        ret[i++] = *s++;
+    }
+    ret[i] = '\0';
+    return ret;
+}
+ 
+int main(void)
+{
+    char mystr[100], c[100], d[100];
+    scanf ("%[^\n]%*c", mystr);
+    scanf(" %s",c);
+    scanf(" %s",d);
+    char *newstr = NULL;
+ 
+    newstr = rep_str(mystr, c,d);
+    if(strcmp(mystr,newstr) == 0){
+        printf("Palavra não encontrada no texto!");
+    }else{
+        printf("%s", newstr);
+    }
+    free(newstr);
+    return 0;
+}
